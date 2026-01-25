@@ -1,0 +1,24 @@
+import { useState, useEffect } from "react";
+
+export default function App() { const [page, setPage] = useState("video"); const [userRole, setUserRole] = useState(null); // 'student' or 'admin'
+
+useEffect(() => { if (page === "video") { const timer = setTimeout(() => setPage("login"), 8000); // 8 sec intro video return () => clearTimeout(timer); } }, [page]);
+
+return ( <div className="min-h-screen flex flex-col bg-gray-100"> {page === "video" && <IntroVideo />} {page === "login" && ( <Login onLogin={(role) => { setUserRole(role); setPage(role === "admin" ? "admin" : "dashboard"); }} /> )} {page === "dashboard" && <StudentDashboard onLogout={() => setPage("login")} />} {page === "admin" && <AdminPanel onLogout={() => setPage("login")} />} <Footer /> </div> ); }
+
+function IntroVideo() { return ( <div className="flex items-center justify-center h-screen bg-black text-white"> <video
+src="https://www.w3schools.com/html/mov_bbb.mp4"
+autoPlay
+muted
+className="w-full h-full object-cover"
+/> </div> ); }
+
+function Login({ onLogin }) { return ( <div className="flex flex-col items-center justify-center flex-1"> <h1 className="text-2xl font-bold mb-4">Student / Admin Login</h1> <input placeholder="ID" className="mb-2 p-2 border rounded" /> <input placeholder="Password" type="password" className="mb-4 p-2 border rounded" /> <div className="flex gap-3"> <button onClick={() => onLogin("student")} className="px-4 py-2 bg-blue-600 text-white rounded">Student Login</button> <button onClick={() => onLogin("admin")} className="px-4 py-2 bg-gray-800 text-white rounded">Admin Login</button> </div> </div> ); }
+
+function StudentDashboard({ onLogout }) { const items = [ "Fees", "Attendance", "Notice Board", "Holidays", "Write to Academy", "Student Profile", ];
+
+return ( <div className="flex-1 p-6"> <h2 className="text-xl font-bold mb-4">Student Dashboard</h2> <div className="grid grid-cols-2 md:grid-cols-3 gap-4"> {items.map((item) => ( <div key={item} className="p-4 bg-white rounded shadow text-center font-semibold"> {item} </div> ))} </div> <button onClick={onLogout} className="mt-6 text-red-600">Logout</button> </div> ); }
+
+function AdminPanel({ onLogout }) { return ( <div className="flex-1 p-6"> <h2 className="text-xl font-bold mb-4">Admin Panel</h2> <ul className="space-y-2"> <li className="bg-white p-3 rounded shadow">Update Fees</li> <li className="bg-white p-3 rounded shadow">Update Attendance</li> <li className="bg-white p-3 rounded shadow">Post Notice</li> <li className="bg-white p-3 rounded shadow">Manage Holidays</li> <li className="bg-white p-3 rounded shadow">Manage Students</li> </ul> <button onClick={onLogout} className="mt-6 text-red-600">Logout</button> </div> ); }
+
+function Footer() { return ( <footer className="text-center p-3 text-sm text-gray-600"> Powered by XYZ Academy Est. 2027 </footer> ); }
