@@ -68,71 +68,24 @@
 
 <!-- LOGIN PAGE -->
 <div id="loginPage" class="hidden center">
-  <h2>Login</h2>
-  <input type="text" id="userId" placeholder="ID">
-  <input type="password" id="password" placeholder="Password">
-  <button onclick="studentLogin()">Student Login</button>
-  <button onclick="adminLogin()">Admin Login</button>
-</div>
+  <h2>In Rebuild Phase</h2>
 
-<!-- STUDENT DASHBOARD -->
-<div id="studentPage" class="hidden center">
-  <h2>Student Dashboard</h2>
-  <div class="grid">
-    <div class="card">Fees</div>
-    <div class="card">Attendance</div>
-    <div class="card">Notice Board</div>
-    <div class="card">Holidays</div>
-    <div class="card">Write to Academy</div>
-    <div class="card">Student Profile</div>
-  </div>
-  <button onclick="logout()">Logout</button>
-</div>
-
-<!-- ADMIN PANEL -->
-<div id="adminPage" class="hidden center">
-  <h2>Admin Panel</h2>
-  <div class="grid">
-    <div class="card">Update Fees</div>
-    <div class="card">Update Attendance</div>
-    <div class="card">Post Notice</div>
-    <div class="card">Manage Holidays</div>
-    <div class="card">Manage Students</div>
-  </div>
-  <button onclick="logout()">Logout</button>
-</div>
 
 <footer>
-  Powered by XYZ Academy Est. 2027
+  Powered by AcademeForge Est. 2024
 </footer>
 
 <script>
   const video = document.getElementById("introVideo");
   const videoPage = document.getElementById("videoPage");
   const loginPage = document.getElementById("loginPage");
-  const studentPage = document.getElementById("studentPage");
-  const adminPage = document.getElementById("adminPage");
 
   video.onended = function () {
     videoPage.classList.add("hidden");
     loginPage.classList.remove("hidden");
   };
 
-  function studentLogin() {
-    loginPage.classList.add("hidden");
-    studentPage.classList.remove("hidden");
-  }
-
-  function adminLogin() {
-    loginPage.classList.add("hidden");
-    adminPage.classList.remove("hidden");
-  }
-
-  function logout() {
-    studentPage.classList.add("hidden");
-    adminPage.classList.add("hidden");
-    loginPage.classList.remove("hidden");
-  }
+ 
 </script>
 
 </body>
