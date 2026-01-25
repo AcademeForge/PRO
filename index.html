@@ -1,1 +1,139 @@
 
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>XYZ Academy</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+    }
+    .hidden { display: none; }
+
+    .center {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+    }
+
+    input {
+      padding: 10px;
+      margin: 5px;
+      width: 220px;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin: 5px;
+      cursor: pointer;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      text-align: center;
+      border-radius: 6px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    footer {
+      text-align: center;
+      padding: 10px;
+      background: #ddd;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- VIDEO PAGE -->
+<div id="videoPage">
+  <video id="introVideo" width="100%" height="100%" autoplay muted>
+    <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+  </video>
+</div>
+
+<!-- LOGIN PAGE -->
+<div id="loginPage" class="hidden center">
+  <h2>Login</h2>
+  <input type="text" id="userId" placeholder="ID">
+  <input type="password" id="password" placeholder="Password">
+  <button onclick="studentLogin()">Student Login</button>
+  <button onclick="adminLogin()">Admin Login</button>
+</div>
+
+<!-- STUDENT DASHBOARD -->
+<div id="studentPage" class="hidden center">
+  <h2>Student Dashboard</h2>
+  <div class="grid">
+    <div class="card">Fees</div>
+    <div class="card">Attendance</div>
+    <div class="card">Notice Board</div>
+    <div class="card">Holidays</div>
+    <div class="card">Write to Academy</div>
+    <div class="card">Student Profile</div>
+  </div>
+  <button onclick="logout()">Logout</button>
+</div>
+
+<!-- ADMIN PANEL -->
+<div id="adminPage" class="hidden center">
+  <h2>Admin Panel</h2>
+  <div class="grid">
+    <div class="card">Update Fees</div>
+    <div class="card">Update Attendance</div>
+    <div class="card">Post Notice</div>
+    <div class="card">Manage Holidays</div>
+    <div class="card">Manage Students</div>
+  </div>
+  <button onclick="logout()">Logout</button>
+</div>
+
+<footer>
+  Powered by XYZ Academy Est. 2027
+</footer>
+
+<script>
+  const video = document.getElementById("introVideo");
+  const videoPage = document.getElementById("videoPage");
+  const loginPage = document.getElementById("loginPage");
+  const studentPage = document.getElementById("studentPage");
+  const adminPage = document.getElementById("adminPage");
+
+  video.onended = function () {
+    videoPage.classList.add("hidden");
+    loginPage.classList.remove("hidden");
+  };
+
+  function studentLogin() {
+    loginPage.classList.add("hidden");
+    studentPage.classList.remove("hidden");
+  }
+
+  function adminLogin() {
+    loginPage.classList.add("hidden");
+    adminPage.classList.remove("hidden");
+  }
+
+  function logout() {
+    studentPage.classList.add("hidden");
+    adminPage.classList.add("hidden");
+    loginPage.classList.remove("hidden");
+  }
+</script>
+
+</body>
+</html>
