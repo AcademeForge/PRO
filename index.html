@@ -1,92 +1,112 @@
-
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>AcademeForge</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Oshaya – Demo Medical Store</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f2f2f2;
-    }
-    .hidden { display: none; }
+    *{box-sizing:border-box;margin:0;padding:0;font-family:'Poppins',sans-serif}
+    body{background:#f6f7f9;color:#333}
+    a{text-decoration:none;color:inherit}
+    header{background:#fff;border-bottom:1px solid #e5e5e5;position:sticky;top:0;z-index:100}
+    .topbar{display:flex;align-items:center;gap:12px;padding:10px 16px}
+    .logo{font-weight:600;font-size:20px;color:#0a8f8f}
+    .search{flex:1;display:flex}
+    .search input{flex:1;padding:8px;border:1px solid #ccc;border-radius:4px 0 0 4px}
+    .search button{padding:8px 14px;border:none;background:#0a8f8f;color:#fff;border-radius:0 4px 4px 0}
+    .icons span{margin-left:12px;cursor:pointer}.banner{display:grid;grid-template-columns:2fr 1fr;gap:10px;padding:16px}
+.banner div{border-radius:8px;color:#fff;padding:20px;min-height:120px}
+.b1{background:linear-gradient(135deg,#2bb0b0,#78d6d6)}
+.b2{background:url('https://images.unsplash.com/photo-1542736667-069246bdbc6d') center/cover}
 
-    .center {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      flex-direction: column;
-    }
+h2{margin:20px 16px 10px;font-size:18px}
 
-    input {
-      padding: 10px;
-      margin: 5px;
-      width: 220px;
-    }
+.categories,.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;padding:0 16px}
+.card{background:#fff;border-radius:8px;box-shadow:0 2px 6px rgba(0,0,0,.06);padding:12px;text-align:center}
+.card img{width:100%;height:120px;object-fit:contain}
+.card h3{font-size:14px;margin:8px 0}
+.price{font-weight:600;color:#0a8f8f}
+.old{color:#999;text-decoration:line-through;font-size:12px;margin-right:6px}
+.btn{margin-top:8px;padding:8px;width:100%;border:none;background:#0a8f8f;color:#fff;border-radius:4px;cursor:pointer}
 
-    button {
-      padding: 10px 20px;
-      margin: 5px;
-      cursor: pointer;
-    }
+footer{background:#0f2f2f;color:#fff;margin-top:40px}
+.footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;padding:30px}
+footer h4{margin-bottom:10px}
+footer p,footer a{font-size:14px;color:#cfdede}
+.copyright{text-align:center;padding:10px;background:#0b2323;font-size:13px}
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 15px;
-      margin-top: 20px;
-    }
-
-    .card {
-      background: white;
-      padding: 20px;
-      text-align: center;
-      border-radius: 6px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-
-    footer {
-      text-align: center;
-      padding: 10px;
-      background: #ddd;
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      font-size: 14px;
-    }
   </style>
 </head>
-<body>
-
-<!-- VIDEO PAGE -->
-<div id="videoPage">
-  <video id="introVideo" width="100%" height="100%" autoplay muted>
-    <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-  </video>
-</div>
-
-<!-- LOGIN PAGE -->
-<div id="loginPage" class="hidden center">
-  <h2>In Rebuild Phase</h2>
-
-
-<footer>
-  Powered by AcademeForge Est. 2024
-</footer>
-
-<script>
-  const video = document.getElementById("introVideo");
-  const videoPage = document.getElementById("videoPage");
-  const loginPage = document.getElementById("loginPage");
-
-  video.onended = function () {
-    videoPage.classList.add("hidden");
-    loginPage.classList.remove("hidden");
-  };
-
- 
-</script>
-
-</body>
+<body><header>
+  <div class="topbar">
+    <div class="logo">Oshaya</div>
+    <div class="search">
+      <input type="text" placeholder="Search product" />
+      <button>Search</button>
+    </div>
+    <div class="icons">
+      <span>❤️</span>
+      <span>🛒</span>
+    </div>
+  </div>
+</header><section class="banner">
+  <div class="b1">
+    <h2>Fast & Reliable</h2>
+    <p>Express Delivery for Medicines</p>
+  </div>
+  <div class="b2">
+    <h2>Ayurvedic Teas</h2>
+    <p>Fresh start for your health</p>
+  </div>
+</section><h2>Shop by Categories</h2>
+<section class="categories">
+  <div class="card"><img src="https://cdn-icons-png.flaticon.com/512/2966/2966486.png"><h3>Medicines</h3><p>6 Products</p></div>
+  <div class="card"><img src="https://cdn-icons-png.flaticon.com/512/822/822092.png"><h3>Syrup</h3><p>3 Products</p></div>
+  <div class="card"><img src="https://cdn-icons-png.flaticon.com/512/3105/3105828.png"><h3>Tablets</h3><p>4 Products</p></div>
+  <div class="card"><img src="https://cdn-icons-png.flaticon.com/512/2907/2907253.png"><h3>Wellness</h3><p>5 Products</p></div>
+</section><h2>Shop by Popular Products</h2>
+<section class="products">
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae">
+    <h3>Breathe Easy Herbal Syrup</h3>
+    <p><span class="old">₹500</span><span class="price">₹475</span></p>
+    <button class="btn">Add to Cart</button>
+  </div>
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5">
+    <h3>Allopathy Medicine Pack</h3>
+    <p><span class="old">₹1800</span><span class="price">₹1620</span></p>
+    <button class="btn">Add to Cart</button>
+  </div>
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1613918108466-292b78a8ef95">
+    <h3>Vitamin Wellness Cream</h3>
+    <p><span class="old">₹500</span><span class="price">₹420</span></p>
+    <button class="btn">Add to Cart</button>
+  </div>
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2">
+    <h3>Wevron‑XT Tablets</h3>
+    <p><span class="old">₹140</span><span class="price">₹120</span></p>
+    <button class="btn">Add to Cart</button>
+  </div>
+</section><footer>
+  <div class="footer-grid">
+    <div>
+      <h4>About Oshaya</h4>
+      <p>Demo online medical store offering genuine medicines, healthcare and wellness products.</p>
+    </div>
+    <div>
+      <h4>Important Links</h4>
+      <p><a href="#">Shop</a></p>
+      <p><a href="#">My Account</a></p>
+    </div>
+    <div>
+      <h4>Contact Us</h4>
+      <p>📞 +91 62992 49627</p>
+      <p>✉ care@oshaya.co.in</p>
+    </div>
+  </div>
+  <div class="copyright">© 2026 Demo Website. All Rights Reserved.</div>
+</footer></body>
 </html>
