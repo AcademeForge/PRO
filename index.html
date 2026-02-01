@@ -1,89 +1,287 @@
+
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Oshaya – Modern Medical Store (Demo)</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<title>MediCart – Medical Store</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <style>
+/* ===== THEME ===== */
 :root{
-  --primary:#0a8f8f;
-  --secondary:#e9f7f7;
-  --dark:#0f2f2f;
+  --bg:#f4f6f8;
+  --card:#fff;
+  --text:#000;
+  --primary:#1e88e5;
 }
-*{box-sizing:border-box;margin:0;padding:0;font-family:'Poppins',sans-serif}
-body{background:linear-gradient(#f8fbfb,#eef6f6);color:#222}
-header{background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.08);position:sticky;top:0;z-index:99}
-.topbar{display:flex;align-items:center;gap:12px;padding:14px 18px}
-.logo{font-size:22px;font-weight:700;color:var(--primary)}
-.search{flex:1;display:flex}
-.search input{flex:1;padding:10px;border:1px solid #ccc;border-radius:6px 0 0 6px}
-.search button{padding:10px 18px;border:none;background:var(--primary);color:#fff;border-radius:0 6px 6px 0}
-.cart-btn{font-size:18px;cursor:pointer}.hero{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:20px} .hero .box{border-radius:14px;padding:28px;color:#fff;min-height:160px;animation:fadeUp .8s} .hero .b1{background:linear-gradient(135deg,#1bb6b6,#79e0e0)} .hero .b2{background:url('https://images.unsplash.com/photo-1588776814546-1ffcf47267a5') center/cover}
+.dark{
+  --bg:#121212;
+  --card:#1e1e1e;
+  --text:#fff;
+}
+*{box-sizing:border-box;font-family:Arial,sans-serif}
+body{margin:0;background:var(--bg);color:var(--text);transition:.3s}
 
-@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+/* ===== NAV ===== */
+nav{
+  background:var(--primary);
+  color:#fff;
+  padding:12px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  align-items:center;
+  justify-content:space-between;
+}
+nav span{font-size:20px;font-weight:bold}
+nav button{
+  background:#fff;
+  border:none;
+  padding:6px 10px;
+  border-radius:6px;
+  cursor:pointer;
+}
 
-h2{margin:28px 18px 14px;font-size:20px}
+/* ===== CONTROLS ===== */
+.controls{
+  background:var(--card);
+  padding:10px;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+input,select{
+  padding:8px;
+  border-radius:6px;
+  border:1px solid #ccc;
+  width:100%;
+}
+@media(min-width:600px){
+  input,select{width:auto}
+}
 
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:18px;padding:0 18px} .card{background:#fff;border-radius:14px;box-shadow:0 8px 20px rgba(0,0,0,.08);padding:14px;text-align:center;transition:.3s} .card:hover{transform:translateY(-6px)} .card img{width:100%;height:130px;object-fit:contain} .card h3{font-size:14px;margin:10px 0} .price{font-weight:600;color:var(--primary)} .old{text-decoration:line-through;color:#999;font-size:12px;margin-right:6px} .btn{margin-top:10px;padding:10px;width:100%;border:none;background:var(--primary);color:#fff;border-radius:8px;cursor:pointer}
+/* ===== GRID ===== */
+.container{
+  padding:15px;
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
+  gap:15px;
+}
 
-/* MODAL */ .modal{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center} .modal.active{display:flex} .modal-box{background:#fff;border-radius:16px;max-width:420px;width:92%;padding:20px;animation:fadeUp .5s} .modal-box h3{margin-bottom:10px} .modal-box input, .modal-box textarea{width:100%;padding:10px;margin:6px 0;border:1px solid #ccc;border-radius:8px}
+/* ===== CARD ===== */
+.card{
+  background:var(--card);
+  padding:12px;
+  border-radius:10px;
+  box-shadow:0 4px 12px rgba(0,0,0,.1);
+  transition:.3s;
+}
+.card:hover{transform:scale(1.05)}
+.card h3{font-size:14px}
+.card p{font-size:12px;color:gray}
+.card button{
+  margin-top:8px;
+  width:100%;
+  background:var(--primary);
+  color:#fff;
+  border:none;
+  padding:7px;
+  border-radius:6px;
+}
 
-footer{margin-top:50px;background:var(--dark);color:#d5eeee} .footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;padding:36px} footer h4{margin-bottom:10px;color:#fff} footer p{font-size:14px} .copyright{text-align:center;padding:12px;background:#0b2323;font-size:13px} </style>
+/* ===== MODAL ===== */
+#modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.6);
+  display:none;
+  justify-content:center;
+  align-items:center;
+}
+.box{
+  background:var(--card);
+  width:92%;
+  max-width:400px;
+  padding:15px;
+  border-radius:10px;
+  animation:up .3s;
+}
+@keyframes up{
+  from{transform:translateY(40px);opacity:0}
+  to{transform:translateY(0);opacity:1}
+}
 
+/* ===== PROGRESS ===== */
+.progress{height:6px;background:#ccc;border-radius:10px;overflow:hidden;margin:8px 0}
+.progress div{height:100%;width:0;background:#4caf50;transition:.4s}
+
+/* ===== SUCCESS ===== */
+#success{
+  display:none;
+  height:100vh;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  text-align:center;
+}
+
+/* ===== CONFETTI ===== */
+.confetti{
+  position:absolute;
+  width:8px;height:8px;
+  animation:fall 3s linear infinite;
+}
+@keyframes fall{
+  from{transform:translateY(-100px)}
+  to{transform:translateY(100vh)}
+}
+</style>
 </head>
-<body><header>
-  <div class="topbar">
-    <div class="logo">Oshaya</div>
-    <div class="search"><input placeholder="Search medicines"><button>Search</button></div>
-    <div class="cart-btn" onclick="openCart()">🛒 Cart</div>
-  </div>
-</header><section class="hero">
-  <div class="box b1"><h2>Fast & Reliable</h2><p>Express delivery for medicines</p></div>
-  <div class="box b2"><h2>Trusted Medicines</h2><p>Doctor recommended products</p></div>
-</section><h2>Categories</h2>
-<section class="grid">
-  <div class="card">Medicines</div><div class="card">Syrups</div><div class="card">Tablets</div><div class="card">Capsules</div>
-  <div class="card">Ayurvedic</div><div class="card">Diabetes</div><div class="card">Heart Care</div><div class="card">Skin Care</div>
-  <div class="card">Baby Care</div><div class="card">Wellness</div>
-</section><h2>Popular Products</h2>
-<section class="grid" id="products"></section><!-- CART & CHECKOUT --><div class="modal" id="cartModal">
-  <div class="modal-box">
-    <h3>Checkout (Cash on Delivery)</h3>
-    <input placeholder="Full Name" id="name">
-    <input placeholder="Phone Number" id="phone">
-    <textarea placeholder="Full Address"></textarea>
-    <button class="btn" onclick="placeOrder()">Confirm Order</button>
-  </div>
-</div><footer>
-  <div class="footer-grid">
-    <div><h4>About Oshaya</h4><p>Demo modern medical e-commerce website.</p></div>
-    <div><h4>Important Links</h4><p>Shop<br>My Account</p></div>
-    <div><h4>Contact</h4><p>+91 62992 49627<br>care@oshaya.co.in</p></div>
-  </div>
-  <div class="copyright">© 2026 Oshaya Demo</div>
-</footer><script>
-const products=[
- {n:'Paracetamol Tablets',p:40,img:'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae'},
- {n:'Vitamin C Tablets',p:120,img:'https://images.unsplash.com/photo-1613918108466-292b78a8ef95'},
- {n:'Cough Syrup',p:95,img:'https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2'},
- {n:'Diabetes Care Capsules',p:220,img:'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5'},
- {n:'Pain Relief Gel',p:85,img:'https://images.unsplash.com/photo-1611078489935-0cb964de46d6'},
- {n:'Ayurvedic Immunity Booster',p:310,img:'https://images.unsplash.com/photo-1542736667-069246bdbc6d'},
- {n:'Baby Care Lotion',p:180,img:'https://images.unsplash.com/photo-1605296867304-46d5465a13f1'},
- {n:'Skin Care Cream',p:260,img:'https://images.unsplash.com/photo-1596755389378-c31d21fd1273'},
- {n:'Heart Care Tablets',p:410,img:'https://images.unsplash.com/photo-1580281657521-1f6b0b6c1a7a'},
- {n:'Wellness Protein Powder',p:650,img:'https://images.unsplash.com/photo-1598970434795-0c54fe7c0642'}
-];
 
-const box=document.getElementById('products');
-products.forEach(p=>{
- box.innerHTML+=`<div class='card'><img src='${p.img}'><h3>${p.n}</h3><p class='price'>₹${p.p}</p><button class='btn' onclick='openCart()'>Add to Cart</button></div>`
-});
+<body>
 
-function openCart(){document.getElementById('cartModal').classList.add('active')}
-function placeOrder(){
- alert('🎉 Congratulations! Your order has been successfully placed. Cash on Delivery selected.');
- document.getElementById('cartModal').classList.remove('active');
+<nav>
+  <span>MediCart 🏥</span>
+  <div>
+    <button onclick="toggleDark()">🌙</button>
+    <button onclick="openHistory()">📜</button>
+    <button onclick="openCart()">🛒 (<span id="count">0</span>)</button>
+  </div>
+</nav>
+
+<div class="controls">
+  <input id="search" placeholder="Search medicine..." oninput="applyFilters()">
+  <select id="category" onchange="applyFilters()">
+    <option value="All">All Categories</option>
+  </select>
+</div>
+
+<div id="products" class="container"></div>
+
+<!-- MODAL -->
+<div id="modal">
+  <div class="box" id="modalBox"></div>
+</div>
+
+<!-- SUCCESS -->
+<div id="success">
+  <h1>🎉 Order Placed Successfully!</h1>
+  <p>Payment received / COD confirmed</p>
+</div>
+
+<script>
+/* ===== DARK MODE ===== */
+if(localStorage.dark==="true")document.body.classList.add("dark");
+function toggleDark(){
+  document.body.classList.toggle("dark");
+  localStorage.dark=document.body.classList.contains("dark");
 }
-</script></body>
+
+/* ===== DATA ===== */
+const categories=[
+"Pain Relief","Fever","Cold","Antibiotic","Diabetes",
+"Heart","BP","Digestive","Skin","Hair",
+"Eye","Dental","Women","Men","Child",
+"Mental","Allergy","Immunity","First Aid","Ayurvedic"
+];
+const medicines=[];
+for(let i=1;i<=100;i++){
+  medicines.push({
+    id:i,
+    name:"Medicine "+i,
+    category:categories[i%categories.length],
+    price:Math.floor(Math.random()*200)+20
+  });
+}
+const categorySelect=document.getElementById("category");
+categories.forEach(c=>categorySelect.innerHTML+=`<option>${c}</option>`);
+
+/* ===== RENDER ===== */
+const products=document.getElementById("products");
+function render(list){
+  products.innerHTML="";
+  list.forEach(m=>{
+    products.innerHTML+=`
+    <div class="card">
+      <h3>${m.name}</h3>
+      <p>${m.category}</p>
+      <p><b>₹${m.price}</b></p>
+      <button onclick="addToCart(${m.id})">Add to Cart</button>
+    </div>`;
+  });
+}
+render(medicines);
+
+/* ===== SEARCH + FILTER ===== */
+function applyFilters(){
+  const s=search.value.toLowerCase();
+  const c=category.value;
+  render(medicines.filter(m=>
+    (c==="All"||m.category===c)&&
+    m.name.toLowerCase().includes(s)
+  ));
+}
+
+/* ===== CART ===== */
+let cart=[];
+function addToCart(id){
+  cart.push(medicines.find(m=>m.id===id));
+  count.innerText=cart.length;
+}
+function openCart(){
+  modal.style.display="flex";
+  modalBox.innerHTML=`
+    <h3>Checkout</h3>
+    <div class="progress"><div id="bar"></div></div>
+    ${cart.map(i=>`<p>${i.name} - ₹${i.price}</p>`).join("")}
+    <h4>Payment</h4>
+    <label><input type="radio" name="pay" value="COD" checked> Cash on Delivery</label><br>
+    <label><input type="radio" name="pay" value="UPI"> UPI (devrajkumar01@ybl)</label>
+    <button onclick="placeOrder()">Place Order</button>
+    <button onclick="closeModal()">Close</button>
+  `;
+  document.getElementById("bar").style.width="50%";
+}
+function closeModal(){modal.style.display="none"}
+
+/* ===== ORDER ===== */
+function placeOrder(){
+  const pay=[...document.getElementsByName("pay")].find(p=>p.checked).value;
+  const orders=JSON.parse(localStorage.orders||"[]");
+  orders.push({date:new Date().toLocaleString(),items:cart,payment:pay});
+  localStorage.orders=JSON.stringify(orders);
+  cart=[];count.innerText=0;
+  modal.style.display="none";
+  showSuccess();
+}
+
+/* ===== ORDER HISTORY ===== */
+function openHistory(){
+  const orders=JSON.parse(localStorage.orders||"[]");
+  modal.style.display="flex";
+  modalBox.innerHTML=`
+    <h3>Order History</h3>
+    ${orders.map(o=>`
+      <p><b>${o.date}</b><br>
+      ${o.items.length} items – ${o.payment}</p>`).join("")||"No orders"}
+    <button onclick="closeModal()">Close</button>
+  `;
+}
+
+/* ===== SUCCESS + CONFETTI ===== */
+function showSuccess(){
+  document.body.innerHTML="";
+  document.body.appendChild(success);
+  success.style.display="flex";
+  for(let i=0;i<70;i++){
+    const c=document.createElement("div");
+    c.className="confetti";
+    c.style.left=Math.random()*100+"vw";
+    c.style.background=`hsl(${Math.random()*360},100%,50%)`;
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(),3000);
+  }
+}
+</script>
+
+</body>
 </html>
