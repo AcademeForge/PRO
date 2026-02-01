@@ -1,112 +1,89 @@
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Oshaya – Demo Medical Store</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <style>
-    *{box-sizing:border-box;margin:0;padding:0;font-family:'Poppins',sans-serif}
-    body{background:#f6f7f9;color:#333}
-    a{text-decoration:none;color:inherit}
-    header{background:#fff;border-bottom:1px solid #e5e5e5;position:sticky;top:0;z-index:100}
-    .topbar{display:flex;align-items:center;gap:12px;padding:10px 16px}
-    .logo{font-weight:600;font-size:20px;color:#0a8f8f}
-    .search{flex:1;display:flex}
-    .search input{flex:1;padding:8px;border:1px solid #ccc;border-radius:4px 0 0 4px}
-    .search button{padding:8px 14px;border:none;background:#0a8f8f;color:#fff;border-radius:0 4px 4px 0}
-    .icons span{margin-left:12px;cursor:pointer}.banner{display:grid;grid-template-columns:2fr 1fr;gap:10px;padding:16px}
-.banner div{border-radius:8px;color:#fff;padding:20px;min-height:120px}
-.b1{background:linear-gradient(135deg,#2bb0b0,#78d6d6)}
-.b2{background:url('https://images.unsplash.com/photo-1542736667-069246bdbc6d') center/cover}
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Oshaya – Modern Medical Store (Demo)</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --primary:#0a8f8f;
+  --secondary:#e9f7f7;
+  --dark:#0f2f2f;
+}
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Poppins',sans-serif}
+body{background:linear-gradient(#f8fbfb,#eef6f6);color:#222}
+header{background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.08);position:sticky;top:0;z-index:99}
+.topbar{display:flex;align-items:center;gap:12px;padding:14px 18px}
+.logo{font-size:22px;font-weight:700;color:var(--primary)}
+.search{flex:1;display:flex}
+.search input{flex:1;padding:10px;border:1px solid #ccc;border-radius:6px 0 0 6px}
+.search button{padding:10px 18px;border:none;background:var(--primary);color:#fff;border-radius:0 6px 6px 0}
+.cart-btn{font-size:18px;cursor:pointer}.hero{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:20px} .hero .box{border-radius:14px;padding:28px;color:#fff;min-height:160px;animation:fadeUp .8s} .hero .b1{background:linear-gradient(135deg,#1bb6b6,#79e0e0)} .hero .b2{background:url('https://images.unsplash.com/photo-1588776814546-1ffcf47267a5') center/cover}
 
-h2{margin:20px 16px 10px;font-size:18px}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
 
-.categories,.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;padding:0 16px}
-.card{background:#fff;border-radius:8px;box-shadow:0 2px 6px rgba(0,0,0,.06);padding:12px;text-align:center}
-.card img{width:100%;height:120px;object-fit:contain}
-.card h3{font-size:14px;margin:8px 0}
-.price{font-weight:600;color:#0a8f8f}
-.old{color:#999;text-decoration:line-through;font-size:12px;margin-right:6px}
-.btn{margin-top:8px;padding:8px;width:100%;border:none;background:#0a8f8f;color:#fff;border-radius:4px;cursor:pointer}
+h2{margin:28px 18px 14px;font-size:20px}
 
-footer{background:#0f2f2f;color:#fff;margin-top:40px}
-.footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;padding:30px}
-footer h4{margin-bottom:10px}
-footer p,footer a{font-size:14px;color:#cfdede}
-.copyright{text-align:center;padding:10px;background:#0b2323;font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:18px;padding:0 18px} .card{background:#fff;border-radius:14px;box-shadow:0 8px 20px rgba(0,0,0,.08);padding:14px;text-align:center;transition:.3s} .card:hover{transform:translateY(-6px)} .card img{width:100%;height:130px;object-fit:contain} .card h3{font-size:14px;margin:10px 0} .price{font-weight:600;color:var(--primary)} .old{text-decoration:line-through;color:#999;font-size:12px;margin-right:6px} .btn{margin-top:10px;padding:10px;width:100%;border:none;background:var(--primary);color:#fff;border-radius:8px;cursor:pointer}
 
-  </style>
+/* MODAL */ .modal{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center} .modal.active{display:flex} .modal-box{background:#fff;border-radius:16px;max-width:420px;width:92%;padding:20px;animation:fadeUp .5s} .modal-box h3{margin-bottom:10px} .modal-box input, .modal-box textarea{width:100%;padding:10px;margin:6px 0;border:1px solid #ccc;border-radius:8px}
+
+footer{margin-top:50px;background:var(--dark);color:#d5eeee} .footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;padding:36px} footer h4{margin-bottom:10px;color:#fff} footer p{font-size:14px} .copyright{text-align:center;padding:12px;background:#0b2323;font-size:13px} </style>
+
 </head>
 <body><header>
   <div class="topbar">
     <div class="logo">Oshaya</div>
-    <div class="search">
-      <input type="text" placeholder="Search product" />
-      <button>Search</button>
-    </div>
-    <div class="icons">
-      <span>❤️</span>
-      <span>🛒</span>
-    </div>
+    <div class="search"><input placeholder="Search medicines"><button>Search</button></div>
+    <div class="cart-btn" onclick="openCart()">🛒 Cart</div>
   </div>
-</header><section class="banner">
-  <div class="b1">
-    <h2>Fast & Reliable</h2>
-    <p>Express Delivery for Medicines</p>
+</header><section class="hero">
+  <div class="box b1"><h2>Fast & Reliable</h2><p>Express delivery for medicines</p></div>
+  <div class="box b2"><h2>Trusted Medicines</h2><p>Doctor recommended products</p></div>
+</section><h2>Categories</h2>
+<section class="grid">
+  <div class="card">Medicines</div><div class="card">Syrups</div><div class="card">Tablets</div><div class="card">Capsules</div>
+  <div class="card">Ayurvedic</div><div class="card">Diabetes</div><div class="card">Heart Care</div><div class="card">Skin Care</div>
+  <div class="card">Baby Care</div><div class="card">Wellness</div>
+</section><h2>Popular Products</h2>
+<section class="grid" id="products"></section><!-- CART & CHECKOUT --><div class="modal" id="cartModal">
+  <div class="modal-box">
+    <h3>Checkout (Cash on Delivery)</h3>
+    <input placeholder="Full Name" id="name">
+    <input placeholder="Phone Number" id="phone">
+    <textarea placeholder="Full Address"></textarea>
+    <button class="btn" onclick="placeOrder()">Confirm Order</button>
   </div>
-  <div class="b2">
-    <h2>Ayurvedic Teas</h2>
-    <p>Fresh start for your health</p>
-  </div>
-</section><h2>Shop by Categories</h2>
-<section class="categories">
-  <div class="card"><img src="https://cdn-icons-png.flaticon.com/512/2966/2966486.png"><h3>Medicines</h3><p>6 Products</p></div>
-  <div class="card"><img src="https://cdn-icons-png.flaticon.com/512/822/822092.png"><h3>Syrup</h3><p>3 Products</p></div>
-  <div class="card"><img src="https://cdn-icons-png.flaticon.com/512/3105/3105828.png"><h3>Tablets</h3><p>4 Products</p></div>
-  <div class="card"><img src="https://cdn-icons-png.flaticon.com/512/2907/2907253.png"><h3>Wellness</h3><p>5 Products</p></div>
-</section><h2>Shop by Popular Products</h2>
-<section class="products">
-  <div class="card">
-    <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae">
-    <h3>Breathe Easy Herbal Syrup</h3>
-    <p><span class="old">₹500</span><span class="price">₹475</span></p>
-    <button class="btn">Add to Cart</button>
-  </div>
-  <div class="card">
-    <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5">
-    <h3>Allopathy Medicine Pack</h3>
-    <p><span class="old">₹1800</span><span class="price">₹1620</span></p>
-    <button class="btn">Add to Cart</button>
-  </div>
-  <div class="card">
-    <img src="https://images.unsplash.com/photo-1613918108466-292b78a8ef95">
-    <h3>Vitamin Wellness Cream</h3>
-    <p><span class="old">₹500</span><span class="price">₹420</span></p>
-    <button class="btn">Add to Cart</button>
-  </div>
-  <div class="card">
-    <img src="https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2">
-    <h3>Wevron‑XT Tablets</h3>
-    <p><span class="old">₹140</span><span class="price">₹120</span></p>
-    <button class="btn">Add to Cart</button>
-  </div>
-</section><footer>
+</div><footer>
   <div class="footer-grid">
-    <div>
-      <h4>About Oshaya</h4>
-      <p>Demo online medical store offering genuine medicines, healthcare and wellness products.</p>
-    </div>
-    <div>
-      <h4>Important Links</h4>
-      <p><a href="#">Shop</a></p>
-      <p><a href="#">My Account</a></p>
-    </div>
-    <div>
-      <h4>Contact Us</h4>
-      <p>📞 +91 62992 49627</p>
-      <p>✉ care@oshaya.co.in</p>
-    </div>
+    <div><h4>About Oshaya</h4><p>Demo modern medical e-commerce website.</p></div>
+    <div><h4>Important Links</h4><p>Shop<br>My Account</p></div>
+    <div><h4>Contact</h4><p>+91 62992 49627<br>care@oshaya.co.in</p></div>
   </div>
-  <div class="copyright">© 2026 Demo Website. All Rights Reserved.</div>
-</footer></body>
+  <div class="copyright">© 2026 Oshaya Demo</div>
+</footer><script>
+const products=[
+ {n:'Paracetamol Tablets',p:40,img:'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae'},
+ {n:'Vitamin C Tablets',p:120,img:'https://images.unsplash.com/photo-1613918108466-292b78a8ef95'},
+ {n:'Cough Syrup',p:95,img:'https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2'},
+ {n:'Diabetes Care Capsules',p:220,img:'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5'},
+ {n:'Pain Relief Gel',p:85,img:'https://images.unsplash.com/photo-1611078489935-0cb964de46d6'},
+ {n:'Ayurvedic Immunity Booster',p:310,img:'https://images.unsplash.com/photo-1542736667-069246bdbc6d'},
+ {n:'Baby Care Lotion',p:180,img:'https://images.unsplash.com/photo-1605296867304-46d5465a13f1'},
+ {n:'Skin Care Cream',p:260,img:'https://images.unsplash.com/photo-1596755389378-c31d21fd1273'},
+ {n:'Heart Care Tablets',p:410,img:'https://images.unsplash.com/photo-1580281657521-1f6b0b6c1a7a'},
+ {n:'Wellness Protein Powder',p:650,img:'https://images.unsplash.com/photo-1598970434795-0c54fe7c0642'}
+];
+
+const box=document.getElementById('products');
+products.forEach(p=>{
+ box.innerHTML+=`<div class='card'><img src='${p.img}'><h3>${p.n}</h3><p class='price'>₹${p.p}</p><button class='btn' onclick='openCart()'>Add to Cart</button></div>`
+});
+
+function openCart(){document.getElementById('cartModal').classList.add('active')}
+function placeOrder(){
+ alert('🎉 Congratulations! Your order has been successfully placed. Cash on Delivery selected.');
+ document.getElementById('cartModal').classList.remove('active');
+}
+</script></body>
 </html>
